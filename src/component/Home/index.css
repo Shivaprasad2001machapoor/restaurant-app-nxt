@@ -1,0 +1,26 @@
+.menu-tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+}
+
+.tabs {
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  background-color: transparent;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.tab-btn.active {
+  color: red;
+  outline: 2px solid red;
+}

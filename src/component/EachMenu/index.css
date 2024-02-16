@@ -1,0 +1,41 @@
+.menu-item-card {
+  border: 2px solid #ccc; /* 2px border around the menu item box */
+  margin: 10px; /* Adjust margin for spacing between menu items */
+  list-style-type: none;
+}
+
+.menu-item-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Add padding inside the menu item box */
+}
+
+.text-details {
+  flex-grow: 1;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-controls p {
+  margin-right: 10px;
+}
+
+.menu-item-details {
+  max-width: 150px; /* Set maximum width for the image */
+}
+
+.menu-item-details img {
+  width: 100%; /* Make the image fill its container */
+  max-height: 150px; /* Set maximum height for the image */
+  object-fit: cover; /* Ensure the image covers the entire container */
+}
+.pic {
+  height: 150px;
+  width: 200px;
+}
+/* Add any additional styling as needed */

@@ -1,0 +1,15 @@
+.header-component {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mobile-icon {
+  display: flex;
+  flex-direction: row;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
