@@ -102,6 +102,7 @@ class Home extends Component {
 
     return (
       <div>
+        <h1>{data.restaurantName}</h1>
         <ul className="menu-tabs">
           {formattedData.map(eachItem => (
             <li
