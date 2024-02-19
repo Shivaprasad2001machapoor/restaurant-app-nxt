@@ -11,7 +11,6 @@ const Header = () => (
       return (
         <div>
           <div className="header-component">
-            <h1 className="restname">UNI Resto Cafe</h1>
             <div className="mobile-icon">
               <p className="web-my-orders">My Orders</p>
               <div className="icons">
