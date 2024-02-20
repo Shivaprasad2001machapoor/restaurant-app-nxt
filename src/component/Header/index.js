@@ -3,7 +3,7 @@ import CartContext from '../../context/CartContext'
 
 import './index.css'
 
-const Header = () => (
+const Header = ({restaurantName}) => (
   <CartContext.Consumer>
     {value => {
       const {cartList} = value
@@ -11,6 +11,7 @@ const Header = () => (
       return (
         <div>
           <div className="header-component">
+            <h1 className="web-my-orders">{restaurantName}</h1>
             <div className="mobile-icon">
               <p className="web-my-orders">My Orders</p>
               <div className="icons">

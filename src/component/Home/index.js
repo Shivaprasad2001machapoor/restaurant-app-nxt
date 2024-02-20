@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import Header from '../Header'
 import EachMenu from '../EachMenu'
 import './index.css'
 
@@ -102,7 +103,7 @@ class Home extends Component {
 
     return (
       <div>
-        <h1>{data.restaurantName}</h1>
+        <Header restaurantName={data.restaurantName} />
         <ul className="menu-tabs">
           {formattedData.map(eachItem => (
             <li
