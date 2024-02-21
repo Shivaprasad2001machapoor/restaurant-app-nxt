@@ -13,3 +13,14 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+.web-my-orders {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
