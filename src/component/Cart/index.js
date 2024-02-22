@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import Header from '../Header'
 
+import CartListView from '../CartListView'
+
 import CartContext from '../../context/CartContext'
 
 class Cart extends Component {
@@ -60,13 +62,7 @@ class Cart extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          const {
-            cartList,
-            removeAllCartItems,
-            removeCartItem,
-            incrementCartItemQuantity,
-            decrementCartItemQuantity,
-          } = value
+          const {cartList, removeAllCartItems} = value
 
           const {restaurantName} = data
 
@@ -91,53 +87,8 @@ class Cart extends Component {
                     >
                       Remove All
                     </button>
-                    <ul className="cart-items-list">
-                      {cartList.map(item => (
-                        <li key={item.id} className="cart-item">
-                          <div className="cart-item-details">
-                            <img
-                              className="cart-item-image"
-                              src={item.dishImage}
-                              alt={item.dishName}
-                            />
-                            <div className="cart-item-text">
-                              <h3>{item.dishName}</h3>
-                              <p>{`${item.dishCurrency} ${item.dishPrice}`}</p>
-                              <div className="quantity-controls">
-                                <button
-                                  type="button"
-                                  className="quantity-btn"
-                                  onClick={() =>
-                                    decrementCartItemQuantity(item.id)
-                                  }
-                                >
-                                  -
-                                </button>
-                                <span className="quantity">
-                                  {item.quantity}
-                                </span>
-                                <button
-                                  type="button"
-                                  className="quantity-btn"
-                                  onClick={() =>
-                                    incrementCartItemQuantity(item.id)
-                                  }
-                                >
-                                  +
-                                </button>
-                              </div>
-                              <button
-                                type="button"
-                                className="remove-item-btn"
-                                onClick={() => removeCartItem(item.id)}
-                              >
-                                Remove
-                              </button>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+
+                    <CartListView />
                   </div>
                 )}
               </div>

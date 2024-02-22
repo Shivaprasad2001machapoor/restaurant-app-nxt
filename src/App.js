@@ -19,31 +19,35 @@ class App extends Component {
     this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
   }
 
+  removeCartItem = dishId => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.filter(item => item.dishId !== dishId),
+    }))
+  }
+
   removeAllCartItems = () => {
     this.setState({cartList: []})
   }
 
-  removeCartItem = productId => {
+  incrementCartItemQuantity = dishId => {
     this.setState(prevState => ({
-      cartList: prevState.cartList.filter(item => item.id !== productId),
+      cartList: prevState.cartList.map(item => {
+        if (item.id === dishId) {
+          return {...item, quantity: item.quantity + 1}
+        }
+        return item
+      }),
     }))
   }
 
-  incrementCartItemQuantity = productId => {
+  decrementCartItemQuantity = dishId => {
     this.setState(prevState => ({
-      cartList: prevState.cartList.map(item =>
-        item.id === productId ? {...item, quantity: item.quantity + 1} : item,
-      ),
-    }))
-  }
-
-  decrementCartItemQuantity = productId => {
-    this.setState(prevState => ({
-      cartList: prevState.cartList.map(item =>
-        item.id === productId && item.quantity > 0
-          ? {...item, quantity: item.quantity - 1}
-          : item,
-      ),
+      cartList: prevState.cartList.map(item => {
+        if (item.id === dishId && item.quantity > 0) {
+          return {...item, quantity: item.quantity - 1}
+        }
+        return item
+      }),
     }))
   }
 
@@ -77,3 +81,36 @@ class App extends Component {
 }
 
 export default App
+
+/* addCartItem = product => {
+    this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+  }
+
+  removeAllCartItems = () => {
+    this.setState({cartList: []})
+  }
+
+  removeCartItem = productId => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.filter(item => item.id !== productId),
+    }))
+  }
+
+  incrementCartItemQuantity = productId => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(item =>
+        item.id === productId ? {...item, quantity: item.quantity + 1} : item,
+      ),
+    }))
+  }
+
+  decrementCartItemQuantity = productId => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(item =>
+        item.id === productId && item.quantity > 0
+          ? {...item, quantity: item.quantity - 1}
+          : item,
+      ),
+    }))
+  }
+*/

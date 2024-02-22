@@ -1,25 +1,32 @@
 import React from 'react'
 import {FaShoppingCart} from 'react-icons/fa'
+
 import CartContext from '../../context/CartContext'
 import './index.css'
 
 class EachMenu extends React.Component {
-  handleAddToCart = (addCartItem, eachItemDetails, quantity) => {
-    if (eachItemDetails.dishAvailability && quantity > 0) {
-      addCartItem({
-        ...eachItemDetails,
-        quantity,
-      })
+  state = {
+    quantity: 0,
+  }
+
+  onDecrementQuantity = () => {
+    const {quantity} = this.state
+    if (quantity > 1) {
+      this.setState(prevState => ({quantity: prevState.quantity - 1}))
     }
+  }
+
+  onIncrementQuantity = () => {
+    this.setState(prevState => ({quantity: prevState.quantity + 1}))
   }
 
   render() {
     return (
       <CartContext.Consumer>
         {value => {
+          const {quantity} = this.state
           const {eachItemDetails} = this.props
           const {
-            dishId,
             dishName,
             dishPrice,
             dishImage,
@@ -29,14 +36,10 @@ class EachMenu extends React.Component {
             dishAvailability,
             addOnCat,
           } = eachItemDetails
-          const {
-            addCartItem,
-            incrementCartItemQuantity,
-            decrementCartItemQuantity,
-          } = value
-          const {quantity} = value.cartList.find(
-            item => item.id === eachItemDetails.id,
-          ) || {quantity: 0}
+          const {addCartItem} = value
+          const onClickAddToCart = () => {
+            addCartItem({...eachItemDetails, quantity})
+          }
 
           return (
             <li className="menu-item-card">
@@ -48,25 +51,23 @@ class EachMenu extends React.Component {
                   </p>
                   <p>{dishDescription}</p>
                   {dishAvailability ? (
-                    <>
+                    <div className="quantity-container">
                       <button
                         type="button"
-                        onClick={() =>
-                          decrementCartItemQuantity(eachItemDetails.dishId)
-                        }
+                        className="quantity-controller-button"
+                        onClick={this.onDecrementQuantity}
                       >
                         -
                       </button>
-                      <span>{quantity}</span>
+                      <p className="quantity">{quantity}</p>
                       <button
                         type="button"
-                        onClick={() =>
-                          incrementCartItemQuantity(eachItemDetails.dishId)
-                        }
+                        className="quantity-controller-button"
+                        onClick={this.onIncrementQuantity}
                       >
                         +
                       </button>
-                    </>
+                    </div>
                   ) : (
                     <p>Not available</p>
                   )}
@@ -75,13 +76,7 @@ class EachMenu extends React.Component {
                     <button
                       type="button"
                       className="add-to-cart-button"
-                      onClick={() =>
-                        this.handleAddToCart(
-                          addCartItem,
-                          eachItemDetails,
-                          quantity,
-                        )
-                      }
+                      onClick={onClickAddToCart}
                     >
                       ADD TO CART <FaShoppingCart />
                     </button>
